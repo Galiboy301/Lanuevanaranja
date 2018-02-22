@@ -1,0 +1,46 @@
+<head>
+</head>
+<nav>
+  <div class="nav-wrapper">
+    <a href="" class="brand-logo">La Nueva Naranja</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a>Listado de Herramientas</a></li>
+    </ul>
+  </div>
+</nav>
+<h1> </h1>
+<h2> </h2>
+<table>
+	<tr>
+	
+        
+		<thead>
+			<th>Nombre</th>
+			<th>Descripción</th>
+			<th>Precio</th>
+			<th>Marca</th>
+			<th>Foto</th>
+		</thead>
+	</tr>
+	<% @productos.each do |producto| =%>
+<tr>
+	<td><%= producto.nombre %></td>
+	<td><%= producto.descripcion %></td>
+	<td><%= producto.precio %></td>
+	<td><%= producto.marca %></td>
+	<td><%= producto.foto %></td>
+	<td>
+		<% if user_signed_in? %>
+		<%= link_to "Editar", edit_producto_path(producto) %>
+		<%= link_to "Eliminar", producto, method: :delete, data: {confirm: "¿Deseas eliminar este registro?"} %>
+		<% end %>
+	</td>
+</tr>
+		<% end %>
+</table>
+<% if user_signed_in? %>
+<form action= 'http://localhost:3000/productos/new'>
+    		<a class="waves-effect waves-light btn"><input type="submit" value="Agregar" /></a>
+			</form>
+<% end %>
+
